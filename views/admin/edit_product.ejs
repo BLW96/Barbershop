@@ -1,0 +1,156 @@
+<% layout('layouts/adminBoilerplate') %>
+
+    <h1 class="text-center">Edit Product</h1>
+    <a href="/admin/products" class="btn btn-secondary">&#171; Back to all products</a>
+    <br>
+    <br>
+
+    <form action="/admin/products/edit-product/<%= id %>" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-8 offset-1">
+                <div class="mb-3">
+                    <div class="input-group">
+                        <label for="title" class="form-label me-2">Title</label>
+                        <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="input-group">
+                        <label for="brand" class="form-label me-2">Brand</label>
+                        <input type="text" class="form-control" name="brand" value="<%= brand %>" placeholder="brand" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="input-group">
+                        <label for="desc" class="form-label me-2">Description</label>
+                        <textarea type="text" class="form-control" name="desc" row="10" cols="30" required><%= desc %></textarea>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="input-group">
+                        <label for="ingredients" class="form-label me-2">Ingredients</label>
+                        <textarea type="text" class="form-control" name="ingredients" row="10" cols="30" required><%= ingredients %></textarea>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="input-group">
+                        <label for="details" class="form-label me-2">Details</label>
+                        <textarea type="text" class="form-control" name="details" row="10" cols="30" required><%= details %></textarea>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="input-group">
+                        <label for="price" class="form-label me-2">Price</label>
+                        <input type="number" class="form-control" name="price" value="<%= price %>" placeholder="price" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="input-group">
+                        <label for="stock" class="form-label me-2">Stock</label>
+                        <input type="number" class="form-control" name="stock" value="<%= stock %>" placeholder="stock" required>
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <div class="input-group">
+                        <label for="category" class="form-label me-2">Category</label>
+                        <select name="category">
+                            <% categories.forEach(function(cat) { %>
+                                <option value="<%= cat.slug %>">
+                                    <%= cat.title %>
+                                </option>
+                                <% }) %>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="input-group">
+                        <label for="">Current image &#187;</label>
+                        <p>
+                            <% if (image=="" ) { %>
+                                <img src="/images/noimage.png" id="noimage" alt="">
+                                <% } else { %>
+                                    <img src="/product_images/<%= id %>/<%= image %>" id="noimage" class="img-thumbnail" width="100" alt="">
+                                    <% } %>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="input-group">
+                        <label for="image" class="form-label me-2">Upload Image</label>
+                        <input type="file" class="form-control" name="image" id="img">
+                    </div>
+                    <img src="#" id="imgPreview" alt="" class="mt-3">
+                </div>
+
+                <input type="hidden" name="pimage" value="<%= image %>">
+                <button class="btn btn-success mt-2">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+
+    <h2 class="page-header">Gallery</h2>
+    <ul class="gallery">
+        <% galleryImages.forEach(function(image) { %>
+            <% if (image !="thumbs" ) { %>
+                <li>
+                    <img src="/product_images/<%= id %>/gallery/thumbs/<%= image %> " alt="">&nbsp;
+                    <a href="/admin/products/delete-image/<%= image %>?id=<%= id %>" class="confirmDeletion">Delete</a>
+                </li>
+                <% } %>
+                    <% }); %>
+    </ul>
+    <br>
+
+
+    <form action="/admin/products/product-gallery/<%= id %>" novalidate enctype="multipart/form-data" class="dropzone validated-form" id="dropzoneForm">
+        <div class="fallback">
+            <input type="file" name="file" multiple>
+            <input type="submit" value="Upload">
+        </div>
+    </form>
+
+
+    <!-- dropzone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/basic.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/dropzone.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/dropzone.js"></script>
+
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $("#imgPreview").attr('src', e.target.result).width(100).height(100);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $('#img').change(function () {
+            readURL(this);
+        });
+
+        // dropzone
+        Dropzone.options.dropzoneForm = {
+            acceptedFiles: "image/*",
+            init: function () {
+                this.on("queuecomplete", function (file) {
+                    setTimeout(() => {
+                        location.reload()
+                    }, 1000);
+                })
+            }
+        }
+    </script>

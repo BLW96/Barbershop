@@ -1,0 +1,224 @@
+.products-dropdown-filter {
+    margin-top: 2em;
+}
+
+.shop-products-wrapper {
+    margin-top: 1.3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--darkGold);
+    padding: 40px 0;
+    border-radius: 5px;
+}
+
+.products-list {
+    display: -ms-grid;
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 3em;
+    grid-row-gap: 3em;
+    -ms-grid-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
+}
+
+.list-item {
+    background-color: var(--white);
+    border-radius: 5px;
+    box-shadow: 0px 10px 15px 2px rgba(0, 0, 0, 0.30);
+}
+
+.product-col-item-wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    min-height: 28.1em;
+    height: 28.1em;
+    width: 25.1em;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-evenly;
+    -ms-flex-pack: justify;
+    justify-content: space-evenly;
+}
+
+.product-top-img-wrapper {
+    display: block;
+    overflow: hidden;
+    inset: 0px;
+    box-sizing: border-box;
+    margin: 1em;
+}
+
+.shop-product-img {
+    inset: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+    border: none;
+    margin: auto;
+    display: block;
+    width: 200px;
+    height: 200px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: none;
+    background-size: contain;
+    background-image: none;
+    background-position: 0% 0%;
+    transition: 0.5s ease;
+}
+
+.product-bottom-wrapper {
+    font-family: 'Playfair Display', serif;
+    text-align: left;
+}
+
+.shop-product-item-title {
+    width: 100%;
+    padding-left: 20px;
+    font-size: 1.64em;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: var(--black);
+    margin-bottom: .25em;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 22ch;
+}
+
+.shop-product-item-desc {
+    width: 100%;
+    padding-left: 20px;
+    font-size: 1.24em;
+    font-weight: 400;
+    text-transform: lowercase;
+    color: var(--gray-2);
+    margin-bottom: .25em;
+
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 28ch;
+}
+
+.shop-product-item-price {
+    text-align: center;
+    color: var(--gray-2);
+    font-weight: 400;
+    font-size: 1.64em;
+    margin-bottom: .55em;
+}
+
+.add-cart-btn {
+    display: inline-block;
+    width: 100%;
+    padding: .8em 1.24em;
+    margin-bottom: 0.5em;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    letter-spacing: 0.0333em;
+    border: none;
+    color: var(--white);
+    background: var(--gold);
+    transition: 0.25s ease;
+    cursor: pointer;
+}
+
+.add-cart-btn:hover {
+    color: var(--white);
+    background: var(--gold-1);
+}
+
+/* pagination */
+.pagination>li>a {
+    background-color: var(--white);
+    color: var(--gold);
+}
+
+.pagination>li>a:focus,
+.pagination>li>a:hover {
+    color: #6b6560;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination>.active>a {
+    color: var(--white);
+    background-color: var(--gold) !Important;
+    border: solid 1px #AD987D !Important;
+}
+
+.pagination>.active>a:hover {
+    background-color: var(--gold) !Important;
+    border: solid 1px #AD987D;
+}
+
+@media screen and (max-width: 991px) {
+
+    .products-dropdown-filter {
+        margin-top: 5em;
+    }
+
+    .products-list {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .product-col-item-wrapper {
+        width: 23em;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .shop-component {
+        margin-top: 7em;
+    }
+
+    .products-dropdown-filter {
+        margin-top: 5em;
+    }
+
+    .products-list {
+        grid-template-columns: auto;
+        grid-auto-columns: 1fr;
+        grid-auto-rows: 1fr;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .shop-component {
+        margin-top: 5em;
+    }
+
+    .styled-subheading-line {
+        display: none;
+    }
+
+    .products-dropdown-filter {
+        margin-top: 4em;
+    }
+
+    .products-list {
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+    }
+}

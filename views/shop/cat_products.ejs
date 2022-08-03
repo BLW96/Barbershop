@@ -1,0 +1,66 @@
+<% layout('layouts/boilerplate') %>
+
+    <section class="shop-section">
+        <div class="page-padding">
+            <div class="container-large">
+                <div class="padding-vertical padding-custom">
+                    <div class="shop-component">
+                        <div class="shop-text-wrapper">
+                            <div class="styled-subheading-wrapper">
+                                <div class="styled-subheading-line"></div>
+                                <div class="styled-subheading">
+                                    <%= categorySlug.replace('-', ' ' ) %>
+                                </div>
+                                <div class="styled-subheading-line"></div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown products-dropdown-filter">
+                            <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Sort by:&nbsp; Categories
+                            </button>
+                            <ul class="dropdown-menu">
+                                <% categories.forEach(function(c) {%>
+                                    <li><a class="dropdown-item" href="/products/cate/<%= c.slug %>">
+                                            <%= c.title%>
+                                        </a></li>
+                                    <% }) %>
+                            </ul>
+                        </div>
+                        <div class="shop-products-wrapper">
+
+                            <div class="products-list">
+                                <% if (products=="" ) { %>
+                                    <h4>No products found.</h4>
+                                    <% } else { %>
+
+                                        <% for(let product of products) {%>
+
+                                            <div class="list-item">
+                                                <a href="/products/<%= product.category %>/<%= product.slug %>" class="product-col-item-wrapper">
+                                                    <div class="product-top-img-wrapper">
+                                                        <img src="../../product_images/<%= product.id %>/<%= product.image %> " alt="" class="shop-product-img">
+                                                    </div>
+                                                    <div class="product-bottom-wrapper">
+                                                        <div class="shop-product-item-price">
+                                                            &euro;<%= parseFloat(product.price).toFixed(2) %>
+                                                        </div>
+                                                        <div class="shop-product-item-title">
+                                                            <%= product.title %>
+                                                        </div>
+                                                        <div class="shop-product-item-desc">
+                                                            <%= product.desc %>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <a href="/cart/add/<%= product.slug %>" class="add-cart-btn">Quick Add</a>
+                                            </div>
+                                            <%}%>
+                                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

@@ -1,0 +1,202 @@
+.nav-component {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    bottom: auto;
+    z-index: 99;
+    padding-top: 1.4em;
+    padding-bottom: 1.4em;
+}
+
+.nav-container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+}
+
+.nav-brand-logo {
+    width: 90px;
+    height: 90px;
+}
+
+.nav-menu {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.nav-link {
+    color: var(--white);
+    text-decoration-color: initial;
+}
+
+.nav-link {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: .5em 1.4em;
+    color: var(--white);
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-transition: color 200ms ease;
+    transition: color 200ms ease;
+    font-size: 1em;
+    line-height: 1.21;
+    font-weight: 500;
+    letter-spacing: 0.15rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.nav-link:hover {
+    color: var(--gold);
+    transition: .25s ease;
+    border-bottom: 2px solid #AD987D;
+}
+
+.row-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-icons-wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.nav-icons-wrapper .nav-icon-item {
+    font-size: 2.4em;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0px .25em;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+/* Nav mobile icon */
+.nav-menu-button {
+    display: none;
+    z-index: 999;
+}
+
+.nav-menu-button #toggle {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.nav-menu-button #toggle::before {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: -7px;
+    width: 100%;
+    height: 2px;
+    background: var(--white);
+    transition: 0.4s ease;
+}
+
+.nav-menu-button #toggle::after {
+    content: "";
+    position: absolute;
+    bottom: 7px;
+    right: -7px;
+    width: 100%;
+    height: 2px;
+    background: var(--white);
+    transition: 0.4s ease;
+}
+
+.nav-container .nav-menu-button #toggle.active::before {
+    top: 50%;
+    left: 50%;
+    transition: 0.4s ease;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.nav-container .nav-menu-button #toggle.active::after {
+    top: 50%;
+    left: 50%;
+    transition: 0.4s ease;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+#nav-menu.active {
+    right: 0px;
+    opacity: 1;
+    overflow-y: hidden;
+}
+
+@media screen and (max-width: 991px) {
+    .nav-menu-button {
+        display: block;
+        width: 2.75em;
+    }
+
+    .nav-menu {
+        opacity: 0;
+        position: fixed;
+        left: auto;
+        top: 0%;
+        right: -600px;
+        bottom: 0%;
+        min-height: 100vh;
+        margin-top: 0em;
+        padding-top: 8em;
+        padding-right: 4em;
+        padding-left: 4em;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        align-items: start;
+        background-color: var(--darkGold);
+        transition: .35s ease-out;
+    }
+
+    .nav-link {
+        margin-bottom: .55em;
+        font-size: 1.3em;
+    }
+
+    .nav-icons-wrapper {
+        margin-right: 2em;
+    }
+}

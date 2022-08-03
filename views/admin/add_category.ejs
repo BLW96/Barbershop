@@ -1,0 +1,23 @@
+<% layout('layouts/adminBoilerplate') %>
+
+    <h1 class="text-center">Add a Category</h1>
+    <a href="/admin/categories" class="btn btn-secondary">&#171; Back to all Category</a>
+    <br>
+    <br>
+
+    <form action="/admin/categories/add-category" method="POST" novalidate class="validated-form">
+        <div class="row">
+            <div class="col-8 offset-1">
+
+                <div class="mb-3">
+                    <div class="input-group">
+                        <label for="title" class="form-label me-2">Title</label>
+                        <input type="text" class="form-control" name="category[title]" placeholder="Title" required>
+                    </div>
+                </div>
+
+                <button class="btn btn-success mt-2">Submit</button>
+
+            </div>
+        </div>
+    </form>

@@ -1,0 +1,274 @@
+.previous-link-wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: 0.55em 0;
+}
+
+.previous-links-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    list-style: none;
+}
+
+.p-link-item {
+    text-decoration: none;
+    font-size: 1em;
+    color: var(--white);
+}
+
+.p-link-item:hover {
+    color: var(--gray-1);
+}
+
+.product-model-component {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    margin-top: 2em;
+    margin-bottom: 4em;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.custom-display {
+    display: none;
+}
+
+.product-model-img-wrapper {
+    max-width: 50%;
+    width: 50%;
+}
+
+.product-single-img {
+    max-height: 42em;
+}
+
+.product-model-details-wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    max-width: 50%;
+    padding-left: 2em;
+    padding-right: 2em;
+    width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    color: var(--white);
+    text-align: left;
+}
+
+.product-model-brand {
+    font-size: 3.5em;
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    margin-bottom: .75em;
+}
+
+
+.add-to-cart-btn {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: var(--gold);
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    color: var(--white);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.0333em;
+    line-height: 1.05;
+    margin-top: 2em;
+    padding: 1em 1.24em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.25s ease;
+}
+
+.add-to-cart-product-btn:hover {
+    box-shadow: 0px 10px 15px 2px rgba(0, 0, 0, 0.30);
+}
+
+.delivery-services-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 2em;
+    padding: 1.2em;
+    border: 2px solid #AD987D;
+    border-radius: 5px;
+}
+
+.delivery-bx {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    line-height: 1;
+}
+
+.delivery-bx h2 {
+    margin-bottom: 0;
+}
+
+.delivery-bx .iconify {
+    font-size: 4em;
+    padding-right: 10px;
+}
+
+.accordions-dropdown {
+    width: 100%;
+    margin-top: 2em;
+}
+
+.model-info-wrapper {
+    line-height: 1.4;
+    margin-bottom: 2em;
+    width: 100%;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+    background-color: var(--darkGold);
+    color: var(--white);
+    cursor: pointer;
+    padding: 12px;
+    width: 100%;
+    font-size: 1.4em;
+    text-align: left;
+    vertical-align: middle;
+    border: none;
+    border-radius: 5px 5px 0px 0px;
+    outline: none;
+    transition: 0.4s;
+}
+
+.active1,
+.accordion:hover {
+    background-color: var(--gold-1);
+}
+
+.panel {
+    padding: 20px 20px;
+    width: 100%;
+    background-color: var(--darkGold);
+    color: var(--gray);
+    display: none;
+    max-height: 0;
+    font-size: 1.1em;
+    overflow: hidden;
+    transition: max-height 0.25s linear;
+}
+
+.accordion:after {
+    content: "\002B";
+    font-size: 25px;
+    color: var(--white);
+    float: right;
+    margin-left: 5px;
+}
+
+.active1:after {
+    content: "\2212";
+}
+
+@media screen and (max-width: 991px) {
+    .product-single-img {
+        max-height: none;
+        max-width: 100%;
+    }
+
+    .product-model-brand {
+        font-size: 2.5em;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .previous-link-wrapper {
+        margin-top: 2em;
+    }
+
+    .product-model-component {
+        margin-top: 3em;
+        -webkit-box-orient: vertical;
+        flex-direction: column;
+    }
+
+    /* Change the position of the elements (brand, title) product */
+    .custom-display {
+        display: block;
+    }
+
+    .custom-d-none {
+        display: none;
+    }
+
+    .product-model-img-wrapper {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .product-single-img {
+        max-height: none;
+        max-width: 100%;
+    }
+
+    .product-model-details-wrapper {
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .product-model-brand {
+        font-size: 2.5em;
+    }
+
+    .product-model-details-wrapper h5 {
+        font-size: 1.2em;
+    }
+
+    .product-model-details-wrapper .add-to-cart-btn {
+        margin-bottom: 1em;
+    }
+
+    .delivery-services-wrapper {
+        margin-bottom: 1em;
+    }
+
+    .delivery-bx .iconify {
+        padding-right: 10px;
+        padding-left: 8px;
+    }
+}

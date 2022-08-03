@@ -1,0 +1,77 @@
+<div class="product-reviews-component">
+    <div class="reviews-header">
+        <h2 class="text-light">Customers Reviews</h2>
+        <hr class="text-color-gold">
+        <br>
+    </div>
+    <div class="product-reviews-wrapper">
+        <% if (user) { %>
+            <div class="review-form-wrapper">
+                <h4 class="text-light">Write a review</h4>
+                <hr class="text-color-gold">
+                <form action="/products/<%= product.category %>/<%= product._id %>/reviews" method="POST" class="validated-form text-white">
+
+                    <div class="my-2 vertical-align">
+                        <h6>Choose Rating &nbsp;</h6>
+                        <label class="form-label" for="rating"></label>
+                        <input type="range" name="rating" min="1" max="5" oninput="this.style.setProperty('--value', this.value)" step="1" value="1" id="rating" class="rating">
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label" for="rating">
+                            <h6>Review</h6>
+                        </label>
+                        <textarea class="form-control" name="body" id="body" cols="30" rows="3" required></textarea>
+                    </div>
+
+                    <button class="form-btn border-0 mt-1">Submit</button>
+                </form>
+            </div>
+            <hr class="text-color-gold">
+            <% } %>
+                <!-- Render all Reviews -->
+                <div class="container customer-reviews-conponent my-3">
+                    <h4 class="text-light">All reviews (<%= product.reviews.length %>)</h4>
+                    <hr class="text-color-gold">
+                    <div class="row text-left mt-2">
+                        <% for(let review of product.reviews) { %>
+                            <div class="col-md-3 mb-2 mb-md-0 my-2 mx-1 bg-light rounded">
+                                <div class="my-2">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <% for( let i=0; i < 5; i++ ) { %>
+                                                <% if (i < review.rating) { %>
+                                                    <span class="iconify mb-1" data-icon="emojione:star" style="color: white;"></span>
+                                                    <% } %>
+                                                        <% } %>
+                                        </div>
+                                        <strong>
+                                            <%= review.rating %>.00
+                                        </strong>
+                                    </div>
+
+                                    <p class="text-secondary">
+                                        <%= review.createdAt.toDateString() %>
+                                    </p>
+                                </div>
+                                <p class="px-xl-3 mb-2">
+                                    <span class="iconify" data-icon="clarity:block-quote-line" style="color: #616161;"></span></span>
+                                    <i class="pe-2">
+                                        <%= review.body %>
+                                    </i>
+                                    <span class="iconify" data-icon="clarity:block-quote-line" style="color: #616161;" data-rotate="180deg"></span>
+                                </p>
+                                <% if (user) { %>
+                                    <% if (user.isAdmin==true) { %>
+                                        <a href="/products/<%= product.category %>/<%= product._id %>/delete-review/<%=review._id%>" class="btn btn-sm btn-danger my-1">
+                                            Delete
+                                        </a>
+                                        <% } %>
+                                            <% } %>
+
+                            </div>
+                            <% } %>
+                    </div>
+                </div>
+    </div>
+</div>

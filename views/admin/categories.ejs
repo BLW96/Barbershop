@@ -1,0 +1,40 @@
+<% layout('layouts/adminBoilerplate') %>
+
+    <h1 class="page-title">Categories</h1>
+    <a href="/admin/categories/add-category" class="btn btn-secondary mb-4">Add New Category</a>
+    <br>
+    <br>
+    <% if (count> 0) { %>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let cat of categories){%>
+                    <tr">
+                        <td>
+                            <%= cat.title %>
+                        </td>
+                        <td>
+                            <a href="/admin/categories/edit-category/<%= cat._id %>" class="btn btn-secondary">Edit</a>
+                        </td>
+
+                        <td>
+                            <a href="/admin/categories/delete-category/<%= cat._id %>" class="btn btn-danger">
+                                Delete
+                            </a>
+                        </td>
+
+                        </tr>
+
+                        <% }%>
+            </tbody>
+        </table>
+
+        <% } else { %>
+            <h1 class="page-title">No Categories.</h1>
+            <% } %>

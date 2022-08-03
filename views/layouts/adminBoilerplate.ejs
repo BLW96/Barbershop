@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Admin area
+    </title>
+    <!-- Bootstrap CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+        crossorigin="anonymous">
+    <!-- jquery. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <%- include('../partials/adminNavbar.ejs') %>
+
+        <main class="container">
+            <div style="position: absolute; top: 130px; width: 50%; margin-left: 25%; z-index: 99;">
+                <%- include('../partials/flash.ejs') %>
+            </div>
+            <%- body %>
+        </main>
+
+        <%- include('../partials/adminFooter.ejs') %>
+
+
+            <!-- JavaScript Bundle with Popper -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- CKEditor -->
+            <script src="//cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
+            <script src="/js/validateForms.js"></script>
+            <script src="/js/index.js"></script>
+</body>
+
+</html>

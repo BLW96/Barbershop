@@ -1,0 +1,13 @@
+<% layout('layouts/boilerplate')%>
+    <div style="max-width: 90%; height: 100%;margin: 6em auto; font-size: 20px;background-color: #d2aeae;padding: 10px;">
+        <div>
+            <div role="alert">
+                <h4>
+                    <%=err.message%>
+                </h4>
+                <p>
+                    <%= err.stack %>
+                </p>
+            </div>
+        </div>
+    </div>

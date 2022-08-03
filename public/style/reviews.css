@@ -1,0 +1,67 @@
+.product-reviews-component {
+    margin-top: 2em;
+}
+
+.product-reviews-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    margin-top: 1.3em;
+    background-color: var(--darkGold);
+    border: 2px solid #AD987D;
+    border-radius: 5px;
+}
+
+.review-form-wrapper {
+    max-width: 42em;
+    padding: 20px;
+    margin-bottom: 2em;
+    border-radius: 5px;
+    line-height: 1;
+    background-color: var(--black);
+    box-shadow: 0px 10px 15px 2px rgba(0, 0, 0, 0.30);
+}
+
+
+/* Rating slid stars */
+.rating {
+    /* reviews star custom prop */
+    --star: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.25l-6.188 3.75 1.641-7.031-5.438-4.734 7.172-0.609 2.813-6.609 2.813 6.609 7.172 0.609-5.438 4.734 1.641 7.031z"/></svg>');
+    /* stars and the default background-fill  */
+    --fill: gold;
+    --fillbg: rgba(202, 202, 202, 0.15);
+    /*  default sizes and values */
+    --dir: right;
+    --stars: 5;
+    --starsize: 1.5rem;
+    --symbol: var(--star);
+    --value: 1;
+    --w: calc(var(--stars) * var(--starsize));
+    --x: calc(100% * (var(--value) / var(--stars)));
+    /* final */
+    block-size: var(--starsize);
+    inline-size: var(--w);
+    position: relative;
+    touch-action: manipulation;
+    -webkit-appearance: none;
+    background-color: transparent;
+}
+
+[dir="rtl"] .rating {
+    --dir: left;
+}
+
+.rating::-webkit-slider-runnable-track {
+    background: linear-gradient(to var(--dir), var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
+    block-size: 100%;
+    mask: repeat left center/var(--starsize) var(--symbol);
+    -webkit-mask: repeat left center/var(--starsize) var(--symbol);
+}
+
+.rating::-webkit-slider-thumb {
+    height: var(--starsize);
+    opacity: 0;
+    width: var(--starsize);
+    -webkit-appearance: none;
+}

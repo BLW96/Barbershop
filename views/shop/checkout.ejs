@@ -1,0 +1,117 @@
+<% layout('layouts/boilerplate') %>
+
+    <section class="cart-section">
+        <div class="page-padding">
+            <div class="container-large">
+                <div class="padding-vertical padding-custom">
+                    <div class="cart-component">
+                        <div class="styled-subheading-wrapper">
+                            <div class="styled-subheading-line"></div>
+                            <div class="styled-subheading">Shopping cart</div>
+                            <div class="styled-subheading-line"></div>
+                        </div>
+                        <div class="cart-products-wrapper">
+                            <div class="mb-4" colspan="5" align="right">
+                                <a href="/cart/clear" class="clearcart btn-primary text-light">Clear Cart</a>
+                            </div>
+                            <% if(typeof cart !=="undefined" ) { %>
+
+                                <% var total=0; %>
+                                    <% cart.forEach(function(product) { %>
+                                        <% var sub=parseFloat(product.qt * product.price).toFixed(2) %>
+                                            <% total +=+sub %>
+
+                                                <div class="cart_product-container">
+
+                                                    <div class="align-self-stretch">
+                                                        <img src="<%= product.image %>" class="cpi " alt="" style="width: 8rem; min-height: 8rem;">
+                                                    </div>
+
+                                                    <div class="c-product-info-wrapper">
+                                                        <div class="align-self-stretch ">
+                                                            <h5 class="cp-title mb-4">
+                                                                <%= product.title %>
+                                                            </h5>
+                                                            <h5 class="mb-2">
+                                                                <span class="text-color-gold">Qty :</span>
+                                                                <%= product.qt %>
+                                                            </h5>
+                                                            <h5>
+                                                                <span class="text-color-gold">Price : </span> &euro;<%= parseFloat(product.price).toFixed(2) %>
+                                                            </h5>
+                                                        </div>
+
+                                                        <div class="align-self-stretch">
+                                                            <div class="edit-product mb-5">
+                                                                <a class="btn btn-outline-light me-2" href="/cart/update/<%= product.title %>?action=add"><span class="iconify"
+                                                                        data-icon="ant-design:plus-outlined"></span></a>&nbsp;
+                                                                <a class="clear text-danger" href="/cart/update/<%= product.title %>?action=clear"><span class="iconify"
+                                                                        data-icon="fa6-solid:trash-can"></span></a>&nbsp;
+                                                                <a class="btn btn-outline-light ms-2" href="/cart/update/<%= product.title %>?action=remove"><span class="iconify"
+                                                                        data-icon="fluent:subtract-16-regular"></span></a>&nbsp;
+
+                                                            </div>
+                                                            <h6>subtotal : &euro;<%= sub %>
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% }); %>
+
+                                                    <hr class="text-color-gold my-3">
+                                                    <div class="text-light" colspan="6" align="right">
+                                                        <h4><b>Total:</b>
+                                                            &euro;<%= parseFloat(total).toFixed(2)%>
+                                                        </h4>
+                                                    </div>
+
+                                                    <div class="mt-5" colspan="5" align="right">
+                                                        <a href="/cart/buy" class="buynow btn-primary text-light">Bay Now</a>
+                                                    </div>
+
+
+                                                    <form class="pp" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                                                        <input type="hidden" name="cmd" value="_cart">
+                                                        <input type="hidden" name="upload" value="1">
+                                                        <!-- paypal business sand box developer {merchant} account -->
+                                                        <input type="hidden" name="business" value="bussTest@business.com">
+                                                        <% let num=0; %>
+                                                            <% cart.forEach(function(p) { %>
+                                                                <% num++ %>
+                                                                    <input type="hidden" name="item_name_<%= num %>" value="<%= p.title %>">
+                                                                    <input type="hidden" name="amount_<%= num %>" value="<%= p.price %>">
+                                                                    <input type="hidden" name="quantity_<%= num %>" value="<%= p.qt %>">
+                                                                    <% }); %>
+
+                                                                        <input type="hidden" name="currency_code" value="EUR">
+                                                                        <input type="hidden" name="amount" value="<%= total %>">
+                                                                        <input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit"
+                                                                            alt="Make payments with PayPal - it's fast, free and secure!">
+                                                    </form>
+
+                                                    <% } else { %>
+                                                        <h2 class="text-center">your cart is empty</h2>
+                                                        <% } %>
+                        </div>
+                        <hr class="text-color-gold my-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        $(function () {
+            $('a.clearcart').on('click', function () {
+                if (!confirm('Confirm Clear Cart'))
+                    return false
+            });
+
+            $('a.buynow').on('click', function (e) {
+                e.preventDefault();
+                $.get('/cart/buynow', function () {
+                    $('form.pp input[type=image]').click();
+                    $('.ajaxbg').show();
+                });
+            });
+        });
+    </script>

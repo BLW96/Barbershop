@@ -1,0 +1,75 @@
+<% layout('layouts/adminBoilerplate') %>
+    <br>
+    <h1 class="page-title text-center">
+    </h1>
+    <div class="row">
+        <div class="col-2">
+            <a href="/admin/products/add-product" class="btn btn-secondary">Add new product</a>
+        </div>
+        <div class="col-2">
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Categories
+                </button>
+                <ul class="dropdown-menu">
+                    <% categories.forEach(function(c) {%>
+                        <li><a class="dropdown-item" href="/admin/products/<%= c.slug %>">
+                                <%= c.title%>
+                            </a></li>
+                        <% }) %>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <tr class="home">
+                <th>Image</th>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% for( let product of products ) { %>
+                <tr>
+                    <td>
+                        <% if (product.image==="" || product.image===null) { %>
+                            <img src="/images/noimage.png" class="img-thumbnail" alt="">
+                            <% } else { %>
+                                <img src="/product_images/<%=product.id %>/<%= product.image %>" class="img-thumbnail" width="80" alt="">
+                                <% } %>
+                    </td>
+
+                    <td>
+                        <%= product.title %>
+                    </td>
+                    <td>
+                        <%= product.category %>
+                    </td>
+                    <td>
+                        &euro;<%= parseFloat(product.price).toFixed(2) %>
+                    </td>
+                    <td>
+                        <%= product.stock %>
+                    </td>
+                    <td>
+                        <a href="/admin/products/edit-product/<%= product._id %>" class="btn btn-primary">Edit</a>
+                    </td>
+                    <td>
+                        <a href="/admin/products/delete-product/<%= product._id %>" class="confirmDeletion btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+
+                <% } %>
+        </tbody>
+    </table>

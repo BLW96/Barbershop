@@ -1,0 +1,172 @@
+<% layout('layouts/boilerplate') %>
+    <section class="product-model-section">
+        <div class="page-padding">
+            <div class="container-large">
+                <div class="padding-vertical padding-custom">
+                    <div class="previous-link-wrapper">
+                        <ul class="previous-links-items">
+                            <li><a class="p-link-item" href="/products">All products <span class="iconify-inline text-color-gold" data-icon="ci:chevron-big-right"></span>
+                                </a></li>
+                            <li><a class="p-link-item" href="/products/cate/<%= product.category %>">
+                                    <%= product.category %>
+                                </a></li>
+                        </ul>
+                    </div>
+                    <hr class="text-color-gold">
+                    <div class="product-model-component">
+                        <div class="custom-display">
+                            <h1 class="text-color-gold product-model-brand">
+                                <%=product.brand %>
+                            </h1>
+                            <p class="mb-4 text-light">
+                                <%=product.title %>
+                            </p>
+                        </div>
+                        <div class="product-model-img-wrapper">
+                            <img src="../../product_images/<%= product._id %>/<%= product.image %>" class="pimage product-single-img rounded" alt="img">
+                            <div class="mt-2">
+                                <ul class="gallery row ps-0">
+                                    <% galleryImages.forEach(function(image) { %>
+                                        <% if(image !="thumbs" ) {%>
+                                            <li class="col-3" style="list-style: none;">
+                                                <a data-fancybox="gallery" href="../../product_images/<%= product._id %>/gallery/<%= image %>">
+                                                    <img src="../../product_images/<%= product._id %>/gallery/thumbs/<%= image %>" class="img-thumbnail" width="150" alt="">
+                                                </a>
+                                            </li>
+                                            <% } %>
+                                                <% }) %>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- product-model-details-wrapper -->
+                        <div class="product-model-details-wrapper">
+                            <div class="product-model-brand text-color-gold custom-d-none">
+                                <%=product.brand %>
+                            </div>
+                            <h5 class="mb-4 custom-d-none">
+                                <%=product.title %>
+                            </h5>
+                            <% if (product.reviews!==null) { %>
+
+                                <div class="mb-4">
+                                    <% for( let i=0; i <=5; i++ ) { %>
+                                        <% if (i < Math.floor(Math.random() * 5) + 1) { %>
+                                            <span class="iconify mb-1" data-icon="emojione:star" style="color: white;"></span>
+                                            <% } %>
+                                                <% } %>
+                                </div>
+                                <% } %>
+                                    <h5 class="mb-4">
+                                        &euro;<%= parseFloat(product.price).toFixed(2) %>
+                                    </h5>
+                                    <h6>
+                                        <% if (product.stock < 10) { %>
+                                            Only
+                                            <b class="text-danger">
+                                                <%=product.stock %>
+                                            </b> Left in stock. Harry up!
+                                            <% } else { %>
+                                                <b class="text-success">
+                                                    <%=product.stock %>
+                                                </b> in stock
+                                                <% } %>
+                                    </h6>
+
+                                    <a href="/cart/add/<%= product.slug %>" class="add-to-cart-btn text-white">add to cart | &euro;<%= parseFloat(product.price).toFixed(2) %></a>
+
+                                    <div class="delivery-services-wrapper">
+                                        <div class="delivery-bx">
+                                            <span class="iconify" data-icon="carbon:delivery"></span>
+                                            <div>
+                                                <h5 class="text-color-gold">DELIVERY</h5>
+                                                <p>Monday to friday</p>
+                                            </div>
+                                        </div>
+                                        <div class="delivery-bx">
+                                            <span class="iconify" data-icon="lucide:package"></span>
+                                            <div>
+                                                <h5 class="text-color-gold">PICKUP</h5>
+                                                <p>At point collection</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordions-dropdown">
+                                        <div class="model-info-wrapper">
+                                            <button class="accordion">Description</button>
+                                            <div class="panel">
+                                                <p>
+                                                    <%=product.desc %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="model-info-wrapper">
+                                            <button class="accordion">Details</button>
+                                            <div class="panel">
+                                                <p>
+                                                    <%=product.details %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="model-info-wrapper">
+                                            <button class="accordion">Ingredients</button>
+                                            <div class="panel">
+                                                <p>
+                                                    <%=product.ingredients %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="model-info-wrapper">
+                                            <button class="accordion">Payments & returns</button>
+                                            <div class="panel">
+                                                <p>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                </p>
+                                                <br>
+                                                <div class="payment-icons">
+                                                    <span class="iconify" data-icon="fontisto:paypal" style="color: white; font-size: 30px; padding-right: 5px;"></span>
+                                                    <span class="iconify" data-icon="logos:visa" style="color: white; font-size: 30px; padding-right: 5px;"></span>
+                                                    <span class="iconify" data-icon="logos:mastercard" style="color: white; font-size: 30px;"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+
+                    <!-- product reviews -->
+                    <%- include('./reviews.ejs') %>
+                        <!-- product reviews -->
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+    <script>
+
+        var acc = document.getElementsByClassName("accordion");
+
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                /* Toggle between adding and removing the "active" class,
+                   to highlight the button that controls the panel */
+                this.classList.toggle("active1");
+
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                    panel.style.display = "none";
+                } else {
+                    panel.style.maxHeight = "100%";
+                    panel.style.display = "block";
+                }
+            });
+        }
+
+    </script>

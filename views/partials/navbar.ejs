@@ -1,0 +1,57 @@
+<nav class="nav-component">
+    <div class="page-padding">
+        <div class="nav-container" id="nav-container">
+            <a href="/" aria-current="page" class="nav-brand-link w-inline-block">
+                <img src="../../images/brand-logo.png" class="nav-brand-logo" alt="">
+            </a>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/" aria-current="page" class="nav-link w-inline-block">
+                    <div>HOME</div>
+                </a>
+                <a href="/products/1" class="nav-link w-inline-block">
+                    <div>SHOP</div>
+                </a>
+                <a href="#about" class="nav-link w-inline-block">
+                    <div>ABOUT US</div>
+                </a>
+                <a href="#contact" class="nav-link w-inline-block">
+                    <div>CONTACT US</div>
+                </a>
+                <% if (user && user.isAdmin==true) { %>
+                    <a href="/admin" class="nav-link">Admin pages</a>
+                    <% } %>
+
+            </div>
+            <div class="row-container">
+                <div class="nav-icons-wrapper">
+                    <% if (user) { %>
+                        <a href="/auth/logout" class="nav-link">Logout</a>
+
+                        <% } else { %>
+                            <!-- <a href="/auth/signup" class="nav-link">Sign up</a> -->
+
+                            <a href="/auth/login" class="nav-icon-item text-light">
+                                <lord-icon src="https://cdn.lordicon.com/dklbhvrt.json" trigger="hover" style="width:40px;height:40px;" colors="primary:#ffffff">
+                                </lord-icon>
+                            </a>
+                            <% } %>
+
+                                <a href="/cart/checkout" class="nav-icon-item text-light">
+                                    <lord-icon src="https://cdn.lordicon.com/aoggitwj.json" trigger="hover" colors="primary:#ffffff" style="width:40px;height:40px;">
+                                    </lord-icon>
+                                </a>
+                </div>
+                <div class="nav-menu-button">
+                    <div id="toggle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="ajaxbg">
+    <div class="ajaxinner">
+        <h3>You are now being redirected to paypal...</h3>
+        <img src="/ajax-loader.gif" alt="" />
+    </div>
+</div>
