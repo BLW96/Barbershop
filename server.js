@@ -13,7 +13,7 @@ const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 
 require('dotenv').config({ path: './config/.env' });
 
-
+const port = process.env.PORT || 3000;
 const app = express();
 
 const store = new MongoDBStore({
@@ -22,16 +22,18 @@ const store = new MongoDBStore({
 });
 
 //Setup Mongoodb
-mongoose.connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-    console.log("Database connected");
-});
-
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log(`MongoDB connected: ${conn.connection.host}`);
+    }catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
+}
 
 // Setup engine
 app.engine('ejs', ejsMate);
@@ -136,7 +138,10 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err, title: "Error Page" });
 });
 
-const port = process.env.PORT || 4000;
-app.listen(port, () => {
-    console.log('Listening On Port ' + port);
-});
+
+connectDB().then(() => {
+
+    app.listen(port, () => {
+        console.log('SERVER ON PORT ' + port);
+    });
+})
