@@ -26,11 +26,6 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-
-    -webkit-animation-name: fade;
-    animation-name: fade;
-    -webkit-animation-duration: 0.2s;
-    animation-duration: 0.2s;
 }
 
 html {
@@ -154,17 +149,6 @@ div {
 
 .vertical-align {
     vertical-align: middle !important;
-}
-
-/* Custom Animation */
-@keyframes fade {
-    from {
-        opacity: .8;
-    }
-
-    to {
-        opacity: 1;
-    }
 }
 
 
