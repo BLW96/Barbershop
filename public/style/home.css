@@ -617,7 +617,7 @@
 
 .pricing_section-wrapper .price_wrap .price_list li span.price {
     font-size: 24px;
-    color: var(--gray);
+    color: var(--gray-1);
     font-weight: 700;
     position: absolute;
     top: -10px;
