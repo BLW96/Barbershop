@@ -612,12 +612,12 @@
 
 .pricing_section-wrapper .price_wrap .price_list li p {
     margin: 0;
-    color: var(--gray);
+    color: var(--gray-1);
 }
 
 .pricing_section-wrapper .price_wrap .price_list li span.price {
     font-size: 24px;
-    color: var(--gray-1);
+    color: var(--gray);
     font-weight: 700;
     position: absolute;
     top: -10px;
